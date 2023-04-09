@@ -22,7 +22,7 @@ const initializePassport = () => {
             first_name,
             last_name,
             email,
-            age
+            age,
         } = req.body
 
         try {
@@ -117,7 +117,6 @@ const initializePassport = () => {
     }, async (jwt_payload, done) => {
         try {
             console.log(jwt_payload);
-            // if (!jwt_payload.sadfsdf) return done(null, false, { messages: 'Atributo no encontrado' });
             return done(null, jwt_payload.user);
         } catch (error) {
             return done(error);
