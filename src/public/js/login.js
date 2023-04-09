@@ -26,7 +26,7 @@ form.addEventListener('submit', async e => {
         password: form[1].value,
     }
 
-    const respuesta = await fetch('/api/auth/login', {
+    const respuesta = await fetch('/api/sessions/login', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -35,7 +35,11 @@ form.addEventListener('submit', async e => {
         body: JSON.stringify(datos)
     });
 
+    console.log(respuesta)
+
     if(respuesta.status === 200) {
         console.log(document.cookie)
-    } 
+    }  else {
+        location.href = "/login"
+    }
 })

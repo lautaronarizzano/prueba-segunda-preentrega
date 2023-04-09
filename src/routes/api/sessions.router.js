@@ -34,7 +34,7 @@ router.post('/login', async (req, res) => {
     } = req.body
 
     try {
-        const user = await userModel.findOne(email)
+        const user = await userModel.findOne({email: email})
 
         if (!user) {
             return res.status(404).send('User not found')
@@ -44,11 +44,12 @@ router.post('/login', async (req, res) => {
 
         const accessToken = generateToken(user)
 
+
         res.cookie('cookieToken', accessToken, { maxAge: 60 * 60 * 1000, httpOnly: true })
         .send({ status: 'success', message: 'login success' });
     } catch (error) {
         res.status(400).send({error: error})
-    }
+        }
 });
 
 
